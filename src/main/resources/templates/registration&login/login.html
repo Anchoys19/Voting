@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in page</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
+</head>
+<body>
+<form method="POST" th:object="${loginFormResponse}" th:action="@{/login}">
+    <div class="container">
+        <h1 style="margin-left: 34%">Login</h1>
+        <hr>
+        <div class="validation-error-wrap" th:if="${param.error}">
+            <span class="validation-error">Incorrect login or password</span>
+        </div>
+
+        <label><b>Username</b></label>
+        <input th:field="*{username}" type="text" placeholder="Enter username" name="username" required>
+
+        <label><b>Password</b></label>
+        <input th:field="*{password}" type="password" placeholder="Enter Password" name="password" required>
+        <hr>
+        <button type="submit" class="registerbtn">Login</button>
+    </div>
+
+    <div class="container signin">
+        <p>Don't have an account? <a th:href="@{/registration}">Sign up</a>.</p>
+    </div>
+</form>
+</body>
+</html>

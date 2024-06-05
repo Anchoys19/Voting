@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regestrer page</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
+</head>
+<body>
+<form method="post" th:object="${registerFormResponse}" th:action="@{/registration}">
+    <div class="container">
+        <h1 style="margin-left: 34%">Register</h1>
+        <hr>
+        <p style="margin-left: 19%">Please fill in this form to create an account.</p>
+        <hr>
+
+        <label><b>Username</b></label>
+        <div class="validation-error-wrap">
+            <span class="validation-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+            <span class="validation-error" th:if="${usernameIsTaken != null}" th:text="${usernameIsTaken}"></span>
+        </div>
+        <input type="text" placeholder="Enter username" name="username" required th:field="*{username}">
+
+        <label><b>Password</b></label>
+        <div class="validation-error-wrap">
+            <span class="validation-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+            <span class="validation-error" th:if="${passwordsNotEqual != null}" th:text="${passwordsNotEqual}"></span>
+        </div>
+        <input type="password" placeholder="Enter Password" name="password" required th:field="*{password}">
+
+        <label><b>Repeat Password</b></label>
+        <div class="validation-error-wrap">
+            <span class="validation-error" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></span>
+            <span class="validation-error" th:if="${passwordsNotEqual != null}" th:text="${passwordsNotEqual}"></span>
+        </div>
+        <input type="password" placeholder="Repeat Password" name="repeat-password" required th:field="*{confirmPassword}">
+        <hr>
+        <button type="submit" class="registerbtn">Register</button>
+    </div>
+
+    <div class="container signin">
+        <p>Already have an account? <a th:href="@{/login}">Sign in</a>.</p>
+    </div>
+</form>
+</body>
+</html>
